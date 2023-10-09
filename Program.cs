@@ -1,3 +1,9 @@
+using MusicLibrary.Models;
+using System.Data.Entity;
+
+// понятия не имею, куда поместить, поэтому пока что будет здесь
+Database.SetInitializer(new MLInitializer());
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.

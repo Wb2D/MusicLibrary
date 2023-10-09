@@ -1,8 +1,32 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    Layout = null;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width-device-width" />
+        <title>MusicLibrary</title>
+    </head>
+    <body>
+        <div>
+            <h3>List:</h3>
+            <table>
+                <tr><td><p>Name</p></td>
+                    <td><p>Date</p></td>
+                <td><p>Available</p></td>
+            </tr>
+            @foreach(var obj in ViewBag.Disks)
+            {
+                <tr>
+                    <td><p>@obj.Name</p></td>
+                    <td><p>@obj.Date</p></td>
+                    <td><p>@obj.Available</p></td>
+                    <td><p><a href="/Home/Take/@obj.Id">Take</a></p></td>
+                </tr>
+            }
+        </table>
+        </div>
+    </body>
+</html>

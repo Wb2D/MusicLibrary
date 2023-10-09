@@ -6,27 +6,28 @@ namespace MusicLibrary.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        MLContext mlContext = new MLContext(); // создается контекст данных
+        public ActionResult Index()
         {
-            _logger = logger;
+            IEnumerable<Disk>? disks = mlContext.Disks; // получение из бд всех объектов Disk
+            ViewBag.Disks = disks; // Disks передаются в динамическое свойство Disks в ViewBag
+            
+            return View(); // возвращаю представление
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public ActionResult Take(int id)
         {
+            ViewBag.diskId = id;
             return View();
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        public string Take(Client client) 
         {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            // выполнить действие после взятия диска
+            mlContext.SaveChanges(); // сохранение в бд всех изменений
+            return "succes";
         }
     }
 }

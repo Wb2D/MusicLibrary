@@ -2,6 +2,10 @@
 
 namespace MusicLibrary.Models
 {
+    /*
+     * Данный класс является контекстом данных. Он используется 
+     * EntityFramework для доступа к БД на основе некоторой модели. 
+    */
     public class MLContext : DbContext
     {
         public DbSet<Client>? Clients { get; set; }

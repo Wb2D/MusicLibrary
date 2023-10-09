@@ -1,5 +1,8 @@
 namespace MusicLibrary.Models
 {
+    /*
+     * Ничего не трогал :(
+     */
     public class ErrorViewModel
     {
         public string? RequestId { get; set; }
