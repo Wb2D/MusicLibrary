@@ -7,26 +7,28 @@
 <html>
     <head>
         <meta name="viewport" content="width-device-width" />
-        <title>MusicLibrary</title>
+        <title>List of discs in the music library:</title>
     </head>
+
     <body>
         <div>
-            <h3>List:</h3>
+            <h3>:</h3>
             <table>
-                <tr><td><p>Name</p></td>
+                <tr>
+                    <td><p>Name</p></td>
                     <td><p>Date</p></td>
-                <td><p>Available</p></td>
+                    <td><p>Available</p></td>
             </tr>
-            @foreach(var obj in ViewBag.Disks)
+            @foreach (var obj in ViewBag.Disks)
             {
                 <tr>
-                    <td><p>@obj.Name</p></td>
+                    <td><p><a href="@Url.Action("DiscView", "Home", new { id = obj.Id })">@obj.Name</a></p></td>
                     <td><p>@obj.Date</p></td>
                     <td><p>@obj.Available</p></td>
                     <td><p><a href="/Home/Take/@obj.Id">Take</a></p></td>
                 </tr>
             }
-        </table>
+            </table>
         </div>
     </body>
 </html>

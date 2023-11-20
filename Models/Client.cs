@@ -9,7 +9,7 @@
      * 5. Адрес проживания;
      * 6. Паспорт.
      */
-    public class Client
+    public class client
     {
         public int Id { get; set; } // первичный ключ
         public string? FirstName { get; set; } // имя

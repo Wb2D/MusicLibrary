@@ -15,6 +15,14 @@ namespace MusicLibrary.Controllers
             return View(); // возвращаю представление
         }
 
+        // метод для отображения информации о диске
+        public ActionResult DiscView(int id)
+        {
+            Disk disc = mlContext.Disks.Find(id);
+            ViewBag.Disks = disc;
+            return View();
+        }
+
         [HttpGet]
         public ActionResult Take(int id)
         {
@@ -23,7 +31,7 @@ namespace MusicLibrary.Controllers
         }
 
         [HttpPost]
-        public string Take(Client client) 
+        public string Take(client client) 
         {
             // выполнить действие после взятия диска
             mlContext.SaveChanges(); // сохранение в бд всех изменений

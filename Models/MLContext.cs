@@ -8,7 +8,7 @@ namespace MusicLibrary.Models
     */
     public class MLContext : DbContext
     {
-        public DbSet<Client>? Clients { get; set; }
+        public DbSet<client>? Clients { get; set; }
         public DbSet<Disk>? Disks { get; set; }
         public DbSet<Genre>? Genres { get; set; }
         public DbSet<Group>? Groups { get; set; }
