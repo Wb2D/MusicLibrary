@@ -1,0 +1,99 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width-device-width" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        h4 {
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+            /* стиль для ссылки "Home" */
+            a.home-link {
+                margin-top: 20px;
+                margin-left: 10px;
+                display: block;
+            }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h3>Details for @ViewBag.Disks.Name</h3>
+        <p>Date: @ViewBag.Disks.Date.ToString("dd.MM.yyyy")</p>
+        <p>Available: @ViewBag.Disks.Available</p>
+
+        <h4>Songs on this disc:</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Duration</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in ViewBag.Songs)
+                {
+                    <tr>
+                        <td><a href="@Url.Action("SongView", new { id = obj.Id })">@obj.Name</a></td>
+                        <td>@obj.Duration</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <a href="@Url.Action("Index", "Home")" class="home-link">Home</a>
+    </div>
+</body>
+</html>

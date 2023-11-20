@@ -13,7 +13,7 @@
         public int Id { get; set; } // первичный ключ
         public string? Name { get; set; } // название песни
         public int GroupId { get; set;} // группа
-        public int Year { get; set; } // год релиза
+        public string? Duration { get; set; } // длительность
         public int GenreId { get; set; } // жанр
     }
 }

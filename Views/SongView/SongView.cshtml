@@ -1,0 +1,56 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width-device-width" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h3>Song Details for @ViewBag.Song.Name</h3>
+        <p>Name: @ViewBag.Song.Name</p>
+        <p>Group: <a href="@Url.Action("GroupView", new { id = ViewBag.Song.GroupId })">@ViewBag.Group</a></p>
+        <p>Genre: <a href="@Url.Action("GenreView", new { id = ViewBag.Song.GenreId })">@ViewBag.Genre</a></p>
+        <p>Duration: @ViewBag.Song.Duration</p>
+        <a href="@Url.Action("Index", "Home")">Home</a>
+    </div>
+</body>
+</html>

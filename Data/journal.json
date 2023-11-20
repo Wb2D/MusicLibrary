@@ -1,0 +1,23 @@
+[
+  {
+    "Id": 1,
+    "ClientId": 3,
+    "DiskId": 3,
+    "DateIssue": "2023-11-01",
+    "DateReturn": "2023-11-20"
+  },
+  {
+    "Id": 2,
+    "ClientId": 2,
+    "DiskId": 2,
+    "DateIssue": "2023-08-01",
+    "DateReturn": "2023-09-21"
+  },  
+  {
+    "Id": 3,
+    "ClientId": 1,
+    "DiskId": 1,
+    "DateIssue": "2023-10-01",
+    "DateReturn": "2023-11-01"
+  }
+  ]

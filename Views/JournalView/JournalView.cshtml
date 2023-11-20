@@ -110,20 +110,22 @@
         <table>
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Date</th>
-                    <th>Available</th>
-                    <th>Action</th>
+                    <th>Client First Name</th>
+                    <th>Client Last Name</th>
+                    <th>Disk Name</th>
+                    <th>Date Issue</th>
+                    <th>Date Return</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var obj in ViewBag.Disks)
+                @foreach (var obj in ViewBag.Journal)
                 {
                     <tr>
-                        <td><a href="@Url.Action("DiscView", new { id = obj.Id })">@obj.Name</a></td>
-                        <td>@obj.Date.ToString("dd.MM.yyyy")</td>
-                        <td>@obj.Available</td>
-                        <td><a href="/Home/Take/@obj.Id">Take</a></td>
+                        <td>@obj.ClientFirstName</td>
+                        <td>@obj.ClientLastName</td>
+                        <td>@obj.DiskName</td>
+                        <td>@obj.Journal.DateIssue.ToString("dd.MM.yyyy")</td>
+                        <td>@obj.Journal.DateReturn.ToString("dd.MM.yyyy")</td>
                     </tr>
                 }
             </tbody>

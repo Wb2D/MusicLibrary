@@ -45,7 +45,6 @@
                 border-radius: 5px;
             }
 
-
             nav li {
                 display: inline;
                 margin: 0;
@@ -110,20 +109,20 @@
         <table>
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Date</th>
-                    <th>Available</th>
-                    <th>Action</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Address</th>
+                    <th>Passport</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var obj in ViewBag.Disks)
+                @foreach (var obj in ViewBag.Clients)
                 {
                     <tr>
-                        <td><a href="@Url.Action("DiscView", new { id = obj.Id })">@obj.Name</a></td>
-                        <td>@obj.Date.ToString("dd.MM.yyyy")</td>
-                        <td>@obj.Available</td>
-                        <td><a href="/Home/Take/@obj.Id">Take</a></td>
+                        <td>@obj.FirstName</td>
+                        <td>@obj.LastName</td>
+                        <td>@obj.Address</td>
+                        <td>@obj.Passport</td>
                     </tr>
                 }
             </tbody>

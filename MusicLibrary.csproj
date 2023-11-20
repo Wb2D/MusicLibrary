@@ -7,8 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Home\DiskDetails.cshtml" />
-    <Content Remove="Web.config" />
+    <Compile Remove="Views\Новая папка1\**" />
+    <Compile Remove="Views\Новая папка2\**" />
+    <Content Remove="Views\Новая папка1\**" />
+    <Content Remove="Views\Новая папка2\**" />
+    <EmbeddedResource Remove="Views\Новая папка1\**" />
+    <EmbeddedResource Remove="Views\Новая папка2\**" />
+    <None Remove="Views\Новая папка1\**" />
+    <None Remove="Views\Новая папка2\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Home\DiskView.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

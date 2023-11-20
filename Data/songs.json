@@ -1,0 +1,247 @@
+[
+  {
+    "Id": 1,
+    "Name": "Baby, Please Don’t Go",
+    "GroupId": 1,
+    "Duration": "4:50",
+    "GenreId": 1
+  },
+  {
+    "Id": 2,
+    "Name": "She’s Got Balls",
+    "GroupId": 1,
+    "Duration": "4:52",
+    "GenreId": 1
+  },
+  {
+    "Id": 3,
+    "Name": "Little Lover",
+    "GroupId": 1,
+    "Duration": "5:40",
+    "GenreId": 1
+  },
+  {
+    "Id": 4,
+    "Name": "Stick Around",
+    "GroupId": 1,
+    "Duration": "4:39",
+    "GenreId": 1
+  },
+  {
+    "Id": 5,
+    "Name": "Soul Stripper",
+    "GroupId": 1,
+    "Duration": "6:25",
+    "GenreId": 1
+  },
+  {
+    "Id": 6,
+    "Name": "You Ain’t Got a Hold on Me",
+    "GroupId": 1,
+    "Duration": "3:31",
+    "GenreId": 1
+  },
+  {
+    "Id": 7,
+    "Name": "Love Song (Oh Jene)",
+    "GroupId": 1,
+    "Duration": "5:14",
+    "GenreId": 1
+  },
+  {
+    "Id": 8,
+    "Name": "Show Business",
+    "GroupId": 1,
+    "Duration": "4:46",
+    "GenreId": 1
+  },
+  {
+    "Id": 9,
+    "Name": "It’s a Long Way to the Top (If You Wanna Rock ’n’ Roll)",
+    "GroupId": 1,
+    "Duration": "5:15",
+    "GenreId": 1
+  },
+  {
+    "Id": 10,
+    "Name": "Rock ’n’ Roll Singer",
+    "GroupId": 1,
+    "Duration": "5:04",
+    "GenreId": 1
+  },
+  {
+    "Id": 11,
+    "Name": "The Jack",
+    "GroupId": 1,
+    "Duration": "5:52",
+    "GenreId": 1
+  },
+  {
+    "Id": 12,
+    "Name": "Live Wire",
+    "GroupId": 1,
+    "Duration": "5:49",
+    "GenreId": 1
+  },
+  {
+    "Id": 13,
+    "Name": "T.N.T.",
+    "GroupId": 1,
+    "Duration": "3:34",
+    "GenreId": 1
+  },
+  {
+    "Id": 14,
+    "Name": "Rocker",
+    "GroupId": 1,
+    "Duration": "2:55",
+    "GenreId": 1
+  },
+  {
+    "Id": 15,
+    "Name": "Can I Sit Next to You Girl",
+    "GroupId": 1,
+    "Duration": "4:12",
+    "GenreId": 1
+  },
+  {
+    "Id": 16,
+    "Name": "High Voltage",
+    "GroupId": 1,
+    "Duration": "4:22",
+    "GenreId": 1
+  },
+  {
+    "Id": 17,
+    "Name": "School Days",
+    "GroupId": 1,
+    "Duration": "5:23",
+    "GenreId": 1
+  },
+  {
+    "Id": 18,
+    "Name": "Go Down",
+    "GroupId": 1,
+    "Duration": "5:17",
+    "GenreId": 1
+  },
+  {
+    "Id": 19,
+    "Name": "Dog Eat Dog",
+    "GroupId": 1,
+    "Duration": "3:30",
+    "GenreId": 1
+  },
+  {
+    "Id": 20,
+    "Name": "Let There Be Rock",
+    "GroupId": 1,
+    "Duration": "6:02",
+    "GenreId": 1
+  },    
+  {
+    "Id": 21,
+    "Name": "Bad Boy Boogie",
+    "GroupId": 1,
+    "Duration": "4:18",
+    "GenreId": 1
+  },
+  {
+    "Id": 22,
+    "Name": "Overdose",
+    "GroupId": 1,
+    "Duration": "5:47",
+    "GenreId": 1
+  },
+    {
+    "Id": 23,
+    "Name": "Crabsody in Blue",
+    "GroupId": 1,
+    "Duration": "4:39",
+    "GenreId": 1
+  },
+    {
+    "Id": 24,
+    "Name": "Hell Ain’t a Bad Place to Be",
+    "GroupId": 1,
+    "Duration": "4:12",
+    "GenreId": 1
+  },
+    {
+    "Id": 25,
+    "Name": "Whole Lotta Rosie",
+    "GroupId": 1,
+    "Duration": "5:25",
+    "GenreId": 1
+  },
+  {
+    "Id": 26,
+    "Name": "Highway to Hell",
+    "GroupId": 1,
+    "Duration": "3:28",
+    "GenreId": 1
+  },
+  {
+    "Id": 27,
+    "Name": "Girls Got Rhythm",
+    "GroupId": 1,
+    "Duration": "3:23",
+    "GenreId": 1
+  },
+  {
+    "Id": 28,
+    "Name": "Walk All Over You",
+    "GroupId": 1,
+    "Duration": "5:10",
+    "GenreId": 1
+  },
+  {
+    "Id": 29,
+    "Name": "Touch Too Much",
+    "GroupId": 1,
+    "Duration": "4:27",
+    "GenreId": 1
+  },
+  {
+    "Id": 30,
+    "Name": "Beating Around the Bush",
+    "GroupId": 1,
+    "Duration": "3:56",
+    "GenreId": 1
+  },
+  {
+    "Id": 31,
+    "Name": "Shot Down in Flames",
+    "GroupId": 1,
+    "Duration": "3:22",
+    "GenreId": 1
+  },
+  {
+    "Id": 32,
+    "Name": "Get It Hot",
+    "GroupId": 1,
+    "Duration": "3:23",
+    "GenreId": 1
+  },
+  {
+    "Id": 33,
+    "Name": "If You Want Blood (You’ve Got It)",
+    "GroupId": 1,
+    "Duration": "4:37",
+    "GenreId": 1
+  },
+  {
+    "Id": 34,
+    "Name": "Love Hungry Man",
+    "GroupId": 1,
+    "Duration": "4:17",
+    "GenreId": 1
+  },
+  {
+    "Id": 35,
+    "Name": "Night Prowler",
+    "GroupId": 1,
+    "Duration": "6:27",
+    "GenreId": 1
+  }
+]
