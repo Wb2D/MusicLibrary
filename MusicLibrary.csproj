@@ -4,15 +4,20 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>30935622-4606-40de-8375-6f1623cae86f</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="App_Data\**" />
     <Compile Remove="Views\Новая папка1\**" />
     <Compile Remove="Views\Новая папка2\**" />
+    <Content Remove="App_Data\**" />
     <Content Remove="Views\Новая папка1\**" />
     <Content Remove="Views\Новая папка2\**" />
+    <EmbeddedResource Remove="App_Data\**" />
     <EmbeddedResource Remove="Views\Новая папка1\**" />
     <EmbeddedResource Remove="Views\Новая папка2\**" />
+    <None Remove="App_Data\**" />
     <None Remove="Views\Новая папка1\**" />
     <None Remove="Views\Новая папка2\**" />
   </ItemGroup>
@@ -23,6 +28,11 @@
 
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.14" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.14">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.16" />
   </ItemGroup>
 

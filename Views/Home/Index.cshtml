@@ -113,7 +113,6 @@
                     <th>Name</th>
                     <th>Date</th>
                     <th>Available</th>
-                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -123,7 +122,6 @@
                         <td><a href="@Url.Action("DiscView", new { id = obj.Id })">@obj.Name</a></td>
                         <td>@obj.Date.ToString("dd.MM.yyyy")</td>
                         <td>@obj.Available</td>
-                        <td><a href="/Home/Take/@obj.Id">Take</a></td>
                     </tr>
                 }
             </tbody>
