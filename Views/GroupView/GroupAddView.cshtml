@@ -1,0 +1,101 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px; /* Увеличил высоту для более крупного вида текста в поле ввода */
+            margin-bottom: 16px; /* Увеличил отступ снизу для лучшего визуального разделения полей */
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            color: #333;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 16px;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 16px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+
+<body>
+    <form method="post" action="@Url.Action("DeleteGroupConfirmed", "Home", new { returnUrl = Context.Request.Headers["Referer"].ToString() })">
+        <h2>Add New Group</h2>
+
+        <label for="Name">Name:</label>
+        <input type="text" id="Name" name="Name" required />
+
+        <label for="Date">Date (founded year):</label>
+        <input type="text" id="Date" name="Year" pattern="[0-9]*" inputmode="numeric" title="Please enter a number" required />
+
+        <button type="submit">Add</button>
+
+        <a href="javascript:history.back()">Back</a>
+    </form>
+</body>
+
+</html>

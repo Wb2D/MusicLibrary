@@ -90,6 +90,23 @@
             a:hover {
                 text-decoration: underline;
             }
+        /* Стили для кнопки */
+        .add-button {
+            display: inline-block;
+            background-color: #4CAF50; /* Зеленый цвет */
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 50%; /* Круглая форма */
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -127,6 +144,7 @@
                 }
             </tbody>
         </table>
+        <a href="@Url.Action("AddClient")" class="add-button">+</a>
     </div>
 </body>
 

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MusicLibrary.Models;
 using System.Data.Entity;
 using System.Diagnostics;
@@ -110,6 +111,179 @@ namespace MusicLibrary.Controllers
         {
             ViewBag.Genre = mlContext.Genres!.Find(id);
             return View("\\Views\\GenreView\\GenreView.cshtml");
+        }
+
+        [HttpGet]
+        public ActionResult AddDisk()
+        {
+            //ViewBag.Songs = new SelectList(mlContext.Songs, "Id", "Name");
+            ViewBag.Songs = mlContext.Songs;
+
+            return View("\\Views\\DiskView\\DiskAddView.cshtml");
+        }
+
+        [HttpGet]
+        public ActionResult AddGroup()
+        {
+            return View("\\Views\\GroupView\\GroupAddView.cshtml");
+        }
+
+        [HttpGet]
+        public ActionResult AddSong()
+        {
+            ViewBag.Groups = mlContext.Groups;
+            ViewBag.Genres = mlContext.Genres;
+
+            return View("\\Views\\SongView\\SongAddView.cshtml");
+        }
+
+        [HttpGet]
+        public ActionResult AddGenre()
+        {
+            return View("\\Views\\GenreView\\GenreAddView.cshtml");
+        }
+
+        [HttpGet]
+        public ActionResult AddJournal()
+        {
+            ViewBag.Clients = mlContext.Clients;
+            ViewBag.Disks = mlContext.Disks!.Where(d => d.Available == true).ToList();
+
+            return View("\\Views\\JournalView\\JournalAddView.cshtml");
+        }
+
+        [HttpGet]
+        public ActionResult AddClient()
+        {
+            return View("\\Views\\ClientView\\ClientAddView.cshtml");
+        }
+
+        [HttpPost]
+        public ActionResult AddDisk(Disk disk, List<int> SelectedSongs)
+        {
+            // добавляю информацию о диске в контекст данных
+            mlContext!.Disks!.Add(disk);
+            mlContext.SaveChanges();
+            // если песни выбраны, добавляю связи между диском и песнями
+            if (SelectedSongs != null && SelectedSongs.Any())
+            {
+                foreach (var songId in SelectedSongs)
+                {
+                    // создаю объект SongDisk и добавляю его в контекст данных
+                    var songDisk = new SongDisk { DiskId = disk.Id, SongId = songId };
+                    mlContext.SongsDisks!.Add(songDisk);
+                }
+                mlContext.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult AddGroup(Group group, string returnUrl)
+        {
+            mlContext.Groups!.Add(group);
+            mlContext.SaveChanges();
+
+            return Redirect(returnUrl);
+        }
+
+        [HttpPost]
+        public ActionResult AddSong(Song song, string returnUrl)
+        {
+            mlContext.Songs!.Add(song);
+            mlContext.SaveChanges();
+
+            return Redirect(returnUrl);
+        }
+
+        [HttpPost]
+        public ActionResult AddGenre(Genre genre, string returnUrl)
+        {
+            mlContext.Genres!.Add(genre);
+            mlContext.SaveChanges();
+
+            return Redirect(returnUrl);
+        }
+
+        [HttpPost]
+        public ActionResult AddJournal(Magazine journal, string returnUrl)
+        {
+            mlContext.Magazines!.Add(journal);
+            int takenDisks = journal.DiskId;
+            var takenDisk = mlContext.Disks!.FirstOrDefault(d => d.Id == takenDisks);
+            takenDisk!.Available = false;
+            mlContext.SaveChanges();
+
+            return Redirect(returnUrl);
+        }
+
+        [HttpPost]
+        public ActionResult AddClient(Client client, string returnUrl)
+        {
+            mlContext.Clients!.Add(client);
+            mlContext.SaveChanges();
+
+            return Redirect(returnUrl);
+        }
+
+        [HttpGet]
+        public ActionResult DeleteDisk(int id)
+        {
+            Disk disk = mlContext.Disks!.FirstOrDefault(d => d.Id == id) ?? 
+                throw new InvalidOperationException($"Disk with id {id} not found");
+
+            return View("\\Views\\DiskView\\DeleteDiskView.cshtml");
+        }
+
+        [HttpGet]
+        public ActionResult DeleteGroup(int id)
+        {
+            Group group = mlContext.Groups!.FirstOrDefault(g => g.Id == id) ??
+                throw new InvalidOperationException($"Group with id {id} not found");
+
+            return View("\\Views\\GroupView\\DeleteGroupView.cshtml");
+        }
+
+        [HttpGet]
+        public ActionResult DeleteSong(int id)
+        {
+            Song song = mlContext.Songs!.FirstOrDefault(s => s.Id == id) ??
+                throw new InvalidOperationException($"Song with id {id} not found");
+
+            return View("\\Views\\SongView\\DeleteSongView.cshtml");
+        }
+
+        [HttpPost, ActionName("DeleteDisk")]
+        public ActionResult DeleteDiskConfirmed(int id)
+        {
+            Disk disk = mlContext.Disks!.FirstOrDefault(d => d.Id == id) ?? 
+                throw new InvalidOperationException($"Disk with id {id} not found");
+            mlContext.Disks!.Remove(disk);
+            mlContext.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost, ActionName("DeleteGroup")]
+        public ActionResult DeleteGroupConfirmed(int id, string returnUrl)
+        {
+            Group group = mlContext.Groups!.FirstOrDefault(g => g.Id == id) ??
+                throw new InvalidOperationException($"Group with id {id} not found");
+            mlContext.Groups!.Remove(group);
+            mlContext.SaveChanges();
+
+            return Redirect(returnUrl);
+        }
+
+        [HttpPost, ActionName("DeleteSong")]
+        public ActionResult DeleteSongConfirmed(int id, string returnUrl)
+        {
+            Song song = mlContext.Songs!.FirstOrDefault(s => s.Id == id) ??
+                throw new InvalidOperationException($"Song with id {id} not found");
+            mlContext.Songs!.Remove(song);
+            mlContext.SaveChanges();
+
+            return Redirect(returnUrl);
         }
 
         /*

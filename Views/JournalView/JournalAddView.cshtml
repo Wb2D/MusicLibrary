@@ -1,0 +1,114 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 16px;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 16px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+
+<body>
+    <form method="post" action="@Url.Action("AddJournal", "Home", new { returnUrl = Context.Request.Headers["Referer"].ToString() })">
+        <h2>Add New Song</h2>
+
+        <label for="ClientId">Select client:</label>
+        <select id="ClientId" name="ClientId" required>
+            @foreach (var client in ViewBag.Clients)
+            {
+                <option value="@client.Id">@client.FirstName @client.LastName</option>
+            }
+
+        </select>
+
+        <label for="DiskId">Select disk:</label>
+        <select id="DiskId" name="DiskId" required>
+            @foreach (var disk in ViewBag.Disks)
+            {
+                <option value="@disk.Id">@disk.Name</option>
+            }
+        </select>
+
+        <label for="DateIssue">Date issue:</label>
+        <input type="date" id="DateIssue" name="DateIssue" required />
+
+        <label for="DateReturn">Date return:</label>
+        <input type="date" id="DateReturn" name="DateReturn" required />
+
+        <button type="submit">Add</button>
+
+        <a href="javascript:history.back()">Back</a>
+    </form>
+</body>
+
+</html>

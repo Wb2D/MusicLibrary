@@ -90,6 +90,40 @@
             a:hover {
                 text-decoration: underline;
             }
+        /* Стили для кнопки */
+        .add-button {
+            display: inline-block;
+            background-color: #4CAF50; /* Зеленый цвет */
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 50%; /* Круглая форма */
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+        }
+        /* Стили для кнопки удаления */
+        .delete-button {
+            display: inline-block;
+            background-color: #FF6347; /* Красный цвет */
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 12px;
+            border-radius: 5px;
+            padding: 6px 10px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+            .delete-button:hover {
+                background-color: #FF0000; /* Темно-красный при наведении */
+            }
     </style>
 </head>
 
@@ -112,6 +146,7 @@
                     <th>Name</th>
                     <th>Group</th>
                     <th>Duration</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -121,10 +156,12 @@
                         <td><a href="@Url.Action("SongView", new { id = obj.Song.Id })">@obj.Song.Name</a></td>
                         <td>@obj.GroupName</td>
                         <td>@obj.Song.Duration</td>
+                        <td><a href="@Url.Action("DeleteSong", new { id = obj.Song.Id })" class="delete-button">Delete</a></td>
                     </tr>
                 }
             </tbody>
         </table>
+        <a href="@Url.Action("AddSong")" class="add-button">+</a>
     </div>
 </body>
 

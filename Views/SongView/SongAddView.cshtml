@@ -1,0 +1,113 @@
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 16px;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 16px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+            a:hover {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+
+<body>
+    <form method="post" action="@Url.Action("AddSong", "Home", new { returnUrl = Context.Request.Headers["Referer"].ToString() })">
+        <h2>Add New Song</h2>
+
+        <label for="Name">Name:</label>
+        <input type="text" id="Name" name="Name" required />
+
+        <label for="GroupId">Group:</label>
+        <select id="GroupId" name="GroupId" required>
+            @foreach (var group in ViewBag.Groups)
+            {
+                <option value="@group.Id">@group.Name</option>
+            }
+        </select>
+
+        <label for="Duration">Duration:</label>
+        <input type="text" id="Duration" name="Duration" required />
+
+        <label for="GenreId">Genre:</label>
+        <select id="GenreId" name="GenreId" required>
+            @foreach (var genre in ViewBag.Genres)
+            {
+                <option value="@genre.Id">@genre.Name</option>
+            }
+        </select>
+
+        <button type="submit">Add</button>
+
+        <a href="javascript:history.back()">Back</a>
+    </form>
+</body>
+
+</html>
