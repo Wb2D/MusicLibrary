@@ -40,16 +40,12 @@
             font-weight: bold;
         }
 
-        input {
+        input,
+        select {
             width: 100%;
-            padding: 10px; /* Увеличил высоту для более крупного вида текста в поле ввода */
-            margin-bottom: 16px; /* Увеличил отступ снизу для лучшего визуального разделения полей */
+            padding: 8px;
+            margin-bottom: 10px;
             box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-            color: #333;
         }
 
         button {
@@ -83,16 +79,33 @@
 </head>
 
 <body>
-    <form method="post" action="@Url.Action("AddGroup", "Home", new { returnUrl = Context.Request.Headers["Referer"].ToString() })">
-        <h2>Add New Group</h2>
+    <form method="post" action="@Url.Action("EditJournal", "Home", new { returnUrl = Context.Request.Headers["Referer"].ToString() })">
+        <h2>Edit journal</h2>
 
-        <label for="Name">Name:</label>
-        <input type="text" id="Name" name="Name" required />
+        <label for="ClientId">Select client:</label>
+        <select id="ClientId" name="ClientId" value="@Model.ClientId" required>
+            @foreach (var client in ViewBag.Clients)
+            {
+                <option value="@client.Id">@client.FirstName @client.LastName</option>
+            }
 
-        <label for="Date">Date (founded year):</label>
-        <input type="text" id="Date" name="Year" pattern="[0-9]*" inputmode="numeric" title="Please enter a number" required />
+        </select>
 
-        <button type="submit">Add</button>
+        <label for="DiskId">Select disk:</label>
+        <select id="DiskId" name="DiskId" valie="@Model.DiskId" required>
+            @foreach (var disk in ViewBag.Disks)
+            {
+                <option value="@disk.Id">@disk.Name</option>
+            }
+        </select>
+
+        <label for="DateIssue">Date issue:</label>
+        <input type="date" id="DateIssue" name="DateIssue" value="@Model.DateIssue?.ToString("yyyy-MM-dd")" required />
+
+        <label for="DateReturn">Date return:</label>
+        <input type="date" id="DateReturn" name="DateReturn" value="@Model.DateReturn?.ToString("yyyy-MM-dd")" required />
+
+        <button type="submit">Save</button>
 
         <a href="javascript:history.back()">Back</a>
     </form>

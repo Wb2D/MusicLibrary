@@ -124,6 +124,23 @@
             .delete-button:hover {
                 background-color: #FF0000; /* Темно-красный при наведении */
             }
+
+        .edit-button {
+            display: inline-block;
+            background-color: #007bff; /* Синеватый цвет */
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 12px;
+            border-radius: 5px;
+            padding: 6px 10px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+            .edit-button:hover {
+                background-color: #0056b3; /* Темно-синеватый при наведении */
+            }
     </style>
 </head>
 
@@ -156,7 +173,8 @@
                         <td><a href="@Url.Action("SongView", new { id = obj.Song.Id })">@obj.Song.Name</a></td>
                         <td>@obj.GroupName</td>
                         <td>@obj.Song.Duration</td>
-                        <td><a href="@Url.Action("DeleteSong", new { id = obj.Song.Id })" class="delete-button">Delete</a></td>
+                        <td><a href="@Url.Action("EditSong", new { id = obj.Song.Id })" class="edit-button">Edit</a>
+                            <a href="@Url.Action("DeleteSong", new { id = obj.Song.Id })" class="delete-button">Delete</a></td>
                     </tr>
                 }
             </tbody>

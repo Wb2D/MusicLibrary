@@ -83,16 +83,16 @@
 </head>
 
 <body>
-    <form method="post" action="@Url.Action("AddGroup", "Home", new { returnUrl = Context.Request.Headers["Referer"].ToString() })">
-        <h2>Add New Group</h2>
+    <form method="post" action="@Url.Action("EditGroup", "Home", new { returnUrl = Context.Request.Headers["Referer"].ToString() })">
+        <h2>Edit group</h2>
 
         <label for="Name">Name:</label>
-        <input type="text" id="Name" name="Name" required />
+        <input type="text" id="Name" name="Name" value="@Model.Name" required />
 
         <label for="Date">Date (founded year):</label>
-        <input type="text" id="Date" name="Year" pattern="[0-9]*" inputmode="numeric" title="Please enter a number" required />
+        <input type="text" id="Date" name="Year" pattern="[0-9]*" inputmode="numeric" title="Please enter a number" value="@Model.Year" required />
 
-        <button type="submit">Add</button>
+        <button type="submit">Save</button>
 
         <a href="javascript:history.back()">Back</a>
     </form>

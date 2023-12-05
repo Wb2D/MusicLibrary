@@ -109,6 +109,23 @@
             right: 20px;
             cursor: pointer;
         }
+
+        .edit-button {
+            display: inline-block;
+            background-color: #007bff; /* Синеватый цвет */
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-size: 12px;
+            border-radius: 5px;
+            padding: 6px 10px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+            .edit-button:hover {
+                background-color: #0056b3; /* Темно-синеватый при наведении */
+            }
     </style>
 </head>
 
@@ -133,6 +150,7 @@
                     <th>Disk Name</th>
                     <th>Date Issue</th>
                     <th>Date Return</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -144,6 +162,7 @@
                         <td>@obj.DiskName</td>
                         <td>@obj.Journal.DateIssue.ToString("dd.MM.yyyy")</td>
                         <td>@obj.Journal.DateReturn.ToString("dd.MM.yyyy")</td>
+                        <td><a href="@Url.Action("EditJournal", new { id = obj.Journal.Id })" class="edit-button">Edit</a></td>
                     </tr>
                 }
             </tbody>

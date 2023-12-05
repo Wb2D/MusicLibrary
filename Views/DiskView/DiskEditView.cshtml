@@ -2,6 +2,7 @@
     Layout = null;
 }
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,16 +41,23 @@
             font-weight: bold;
         }
 
-        input {
+        input[type="text"],
+        input[type="date"],
+        select {
             width: 100%;
-            padding: 10px; /* Увеличил высоту для более крупного вида текста в поле ввода */
-            margin-bottom: 16px; /* Увеличил отступ снизу для лучшего визуального разделения полей */
+            padding: 10px;
+            margin-bottom: 16px;
             box-sizing: border-box;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-family: Arial, sans-serif;
             font-size: 14px;
             color: #333;
+        }
+
+        input[type="checkbox"] {
+            margin-bottom: 16px;
+            margin-right: 5px;
         }
 
         button {
@@ -64,9 +72,9 @@
             margin-top: 16px;
         }
 
-            button:hover {
-                background-color: #0056b3;
-            }
+        button:hover {
+            background-color: #0056b3;
+        }
 
         a {
             display: block;
@@ -76,26 +84,49 @@
             text-decoration: none;
         }
 
-            a:hover {
-                text-decoration: underline;
-            }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .selected {
+            background-color: #007bff; /* Цвет фона для выделенных опций */
+        }
     </style>
 </head>
 
 <body>
-    <form method="post" action="@Url.Action("AddGroup", "Home", new { returnUrl = Context.Request.Headers["Referer"].ToString() })">
-        <h2>Add New Group</h2>
+    <form method="post" action="@Url.Action("EditDisk", "Home", FormMethod.Post)">
+        <h2>Edit Disk</h2>
+
+        <input type="hidden" id="Id" name="Id" value="@Model.Id" />
 
         <label for="Name">Name:</label>
-        <input type="text" id="Name" name="Name" required />
+        <input type="text" id="Name" name="Name" value="@Model.Name" required />
 
-        <label for="Date">Date (founded year):</label>
-        <input type="text" id="Date" name="Year" pattern="[0-9]*" inputmode="numeric" title="Please enter a number" required />
+        <label for="Date">Date:</label>
+        <input type="date" id="Date" name="Date" value="@Model.Date.ToString("yyyy-MM-dd")" required />
 
-        <button type="submit">Add</button>
+        <label for="Available">
+            <input type="checkbox" id="Available" name="Available" @(Model.Available ? "checked" : "") />
+            Available
+        </label>
 
-        <a href="javascript:history.back()">Back</a>
+        <label for="SelectedSongs">Select Songs:</label>
+        <select multiple="multiple" id="SelectedSongs" name="SelectedSongs">
+            @foreach (var song in ViewBag.Songs)
+            {
+                var isSelected = ViewBag.SongNumbers != null && ((List<int>)ViewBag.SongNumbers).Contains(song.Id);
+                <option value="@song.Id" class=@(isSelected ? "selected" : "")>@song.Name</option>
+            }
+        </select>
+
+
+        <button type="submit">Save</button>
+
+        <a href="javascript:history.back()">Cancel</a>
     </form>
+
+
 </body>
 
 </html>

@@ -286,6 +286,169 @@ namespace MusicLibrary.Controllers
             return Redirect(returnUrl);
         }
 
+        [HttpGet]
+        public ActionResult EditDisk(int id)
+        {
+            Disk disk = mlContext.Disks!.FirstOrDefault(d => d.Id == id) ??
+                throw new InvalidOperationException($"Disk with id {id} not found");
+
+            if (disk != null)
+            {
+                ViewBag.Songs = mlContext.Songs;
+
+                ViewBag.SongNumbers = mlContext.SongsDisks!
+                    .Where(sd => sd.DiskId == id)
+                    .Select(sd => sd.SongId)
+                    .ToList();
+                return View("\\Views\\DiskView\\DiskEditView.cshtml", disk);
+            }
+
+            throw new InvalidOperationException($"Disk with id {id} not found");
+        }
+
+        [HttpGet]
+        public ActionResult EditGroup(int id)
+        {
+            Group group = mlContext.Groups!.FirstOrDefault(g => g.Id == id) ??
+                throw new InvalidOperationException($"Group with id {id} not found");
+
+            if (group != null)
+            {
+                return View("\\Views\\GroupView\\GroupEditView.cshtml", group);
+            }
+
+            throw new InvalidOperationException($"Group with id {id} not found");
+        }
+
+        [HttpGet]
+        public ActionResult EditSong(int id)
+        {
+            Song song = mlContext.Songs!.FirstOrDefault(s => s.Id == id) ??
+                throw new InvalidOperationException($"Song with id {id} not found");
+
+            if (song != null)
+            {
+                ViewBag.Groups = mlContext.Groups;
+                ViewBag.Genres = mlContext.Genres;
+
+                return View("\\Views\\SongView\\SongEditView.cshtml", song);
+            }
+
+            throw new InvalidOperationException($"Song with id {id} not found");
+        }
+
+        [HttpGet]
+        public ActionResult EditGenre(int id)
+        {
+            Genre genre = mlContext.Genres!.FirstOrDefault(g => g.Id == id) ??
+                throw new InvalidOperationException($"Genre with id {id} not found");
+
+            if (genre != null)
+            {
+                return View("\\Views\\GenreView\\GenreEditView.cshtml", genre);
+            }
+
+            throw new InvalidOperationException($"Genre with id {id} not found");
+        }
+
+        [HttpGet]
+        public ActionResult EditJournal(int id)
+        {
+            Magazine journal = mlContext.Magazines!.FirstOrDefault(g => g.Id == id) ??
+                throw new InvalidOperationException($"Journal with id {id} not found");
+
+            if (journal != null)
+            {
+                ViewBag.Clients = mlContext.Clients;
+                ViewBag.Disks = mlContext.Disks!.Where(d => d.Available == true).ToList();
+
+                return View("\\Views\\JournalView\\JournalEditView.cshtml", journal);
+            }
+
+            throw new InvalidOperationException($"Journal with id {id} not found");
+        }
+
+        [HttpGet]
+        public ActionResult EditClient(int id)
+        {
+            Client client = mlContext.Clients!.FirstOrDefault(g => g.Id == id) ??
+                throw new InvalidOperationException($"Client with id {id} not found");
+
+            if (client != null)
+            {
+                return View("\\Views\\ClientView\\ClientEditView.cshtml", client);
+            }
+
+            throw new InvalidOperationException($"Client with id {id} not found");
+        }
+
+        [HttpPost]
+        public ActionResult EditDisk(Disk disk, List<int> SelectedSongs)
+        {
+            mlContext.Entry(disk).State = EntityState.Modified;
+            // удаляю записи о песнях, которые совпадают с элементами из SelectedSongs
+            mlContext.SongsDisks!
+                .RemoveRange(mlContext.SongsDisks
+                    .Where(sd => sd.DiskId == disk.Id && SelectedSongs.Contains(sd.SongId)));
+            // удаляю песни из SelectedSongs, которые уже существуют в SongsDisks
+            SelectedSongs.RemoveAll(songId =>
+                mlContext.SongsDisks.Any(sd => sd.DiskId == disk.Id && sd.SongId == songId));
+            // добавляю новые записи о песнях, которые были выделены
+            foreach (var songId in SelectedSongs)
+            {
+                var songDisk = new SongDisk { DiskId = disk.Id, SongId = songId };
+                mlContext.SongsDisks!.Add(songDisk);
+            }
+            mlContext.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult EditGroup(Group group, string returnUrl)
+        {
+            mlContext.Entry(group).State = EntityState.Modified;
+            mlContext.SaveChanges();
+
+            return Redirect(returnUrl);
+        }
+
+        [HttpPost]
+        public ActionResult EditSong(Song song, string returnUrl)
+        {
+            mlContext.Entry(song).State = EntityState.Modified;
+            mlContext.SaveChanges();
+
+            return Redirect(returnUrl);
+        }
+
+        [HttpPost]
+        public ActionResult EditGenre(Genre genre, string returnUrl)
+        {
+            mlContext.Entry(genre).State = EntityState.Modified;
+            mlContext.SaveChanges();
+
+            return Redirect(returnUrl);
+        }
+
+        [HttpPost]
+        public ActionResult EditJournal(Magazine journal, string returnUrl)
+        {
+            mlContext.Entry(journal).State = EntityState.Modified;
+            mlContext.SaveChanges();
+
+            return Redirect(returnUrl);
+        }
+
+        [HttpPost]
+        public ActionResult EditClient(Client client, string returnUrl)
+        {
+            mlContext.Entry(client).State = EntityState.Modified;
+            mlContext.SaveChanges();
+
+            return Redirect(returnUrl);
+        }
+
         /*
         [HttpGet]
         public ActionResult Take(int id)
